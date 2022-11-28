@@ -2,13 +2,11 @@
 {
     public class None : Algorithm
     {
-        public None(Bitmap bitmap) : base(bitmap)
-        {
+        public None(Bitmap bitmap) : base(bitmap) { }
 
-        }
-        public override Bitmap ApplayColorReduce(int Kr, int Kg, int Kb)
+        protected override void ReduceColors(BmpPixelSnoop bitmap, int Kr, int Kg, int Kb)
         {
-            return image;
+            // Do nothing
         }
     }
 }

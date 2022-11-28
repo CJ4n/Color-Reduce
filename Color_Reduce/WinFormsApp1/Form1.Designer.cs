@@ -30,6 +30,9 @@
         {
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.originalImageCanvas = new System.Windows.Forms.PictureBox();
+            this.loadImageButton = new System.Windows.Forms.Button();
             this.KbTextBox = new System.Windows.Forms.TextBox();
             this.KgTextBox = new System.Windows.Forms.TextBox();
             this.KrTextBox = new System.Windows.Forms.TextBox();
@@ -43,11 +46,17 @@
             this.OrderedDitheringRandomRadioButton = new System.Windows.Forms.RadioButton();
             this.orderedDitheringDeterministicRadioButton = new System.Windows.Forms.RadioButton();
             this.avarageDitheringRadioButton = new System.Windows.Forms.RadioButton();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).BeginInit();
             this.algorithmGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +65,7 @@
             this.Canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Canvas.Location = new System.Drawing.Point(0, 0);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1000, 835);
+            this.Canvas.Size = new System.Drawing.Size(379, 753);
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
             // 
@@ -68,10 +77,11 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.Canvas);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.loadImageButton);
             this.splitContainer1.Panel2.Controls.Add(this.KbTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.KgTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.KrTextBox);
@@ -79,9 +89,45 @@
             this.splitContainer1.Panel2.Controls.Add(this.KgLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KrLabel);
             this.splitContainer1.Panel2.Controls.Add(this.algorithmGroupBox);
-            this.splitContainer1.Size = new System.Drawing.Size(1309, 835);
-            this.splitContainer1.SplitterDistance = 1000;
+            this.splitContainer1.Size = new System.Drawing.Size(1040, 753);
+            this.splitContainer1.SplitterDistance = 716;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.originalImageCanvas);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.Canvas);
+            this.splitContainer2.Size = new System.Drawing.Size(716, 753);
+            this.splitContainer2.SplitterDistance = 333;
+            this.splitContainer2.TabIndex = 1;
+            // 
+            // originalImageCanvas
+            // 
+            this.originalImageCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.originalImageCanvas.Location = new System.Drawing.Point(0, 0);
+            this.originalImageCanvas.Name = "originalImageCanvas";
+            this.originalImageCanvas.Size = new System.Drawing.Size(333, 753);
+            this.originalImageCanvas.TabIndex = 0;
+            this.originalImageCanvas.TabStop = false;
+            // 
+            // loadImageButton
+            // 
+            this.loadImageButton.Location = new System.Drawing.Point(21, 538);
+            this.loadImageButton.Name = "loadImageButton";
+            this.loadImageButton.Size = new System.Drawing.Size(174, 29);
+            this.loadImageButton.TabIndex = 7;
+            this.loadImageButton.Text = "Load Image";
+            this.loadImageButton.UseVisualStyleBackColor = true;
+            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
             // KbTextBox
             // 
@@ -150,7 +196,7 @@
             this.algorithmGroupBox.Controls.Add(this.avarageDitheringRadioButton);
             this.algorithmGroupBox.Location = new System.Drawing.Point(2, 3);
             this.algorithmGroupBox.Name = "algorithmGroupBox";
-            this.algorithmGroupBox.Size = new System.Drawing.Size(303, 225);
+            this.algorithmGroupBox.Size = new System.Drawing.Size(310, 225);
             this.algorithmGroupBox.TabIndex = 0;
             this.algorithmGroupBox.TabStop = false;
             this.algorithmGroupBox.Text = "Algorithm";
@@ -223,11 +269,15 @@
             this.avarageDitheringRadioButton.UseVisualStyleBackColor = true;
             this.avarageDitheringRadioButton.CheckedChanged += new System.EventHandler(this.avarageDitheringRadioButton_CheckedChanged);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1309, 835);
+            this.ClientSize = new System.Drawing.Size(1040, 753);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -237,6 +287,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).EndInit();
             this.algorithmGroupBox.ResumeLayout(false);
             this.algorithmGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -260,5 +315,9 @@
         private Label RbLabel;
         private Label KgLabel;
         private Label KrLabel;
+        private SplitContainer splitContainer2;
+        private PictureBox originalImageCanvas;
+        private Button loadImageButton;
+        private OpenFileDialog openFileDialog1;
     }
 }

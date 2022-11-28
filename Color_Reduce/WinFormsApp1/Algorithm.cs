@@ -8,7 +8,21 @@
         {
             this.image = (Bitmap)image.Clone();
         }
-        // Algorithm operates on cope of the original image and returns modified image
-        public abstract Bitmap ApplayColorReduce(int Kr, int Kg, int Kb);
+
+        public void UpdateBitmap(Bitmap newBitmap)
+        {
+            image = newBitmap;
+        }
+        public Bitmap ApplayColorReduce(int Kr, int Kg, int Kb)
+        {
+            Bitmap copy = (Bitmap)image.Clone();
+            using (var bitmap = new BmpPixelSnoop(copy))
+            {
+                ReduceColors(bitmap, Kr, Kg, Kb);
+            }
+            return copy;
+        }
+
+        protected abstract void ReduceColors(BmpPixelSnoop bitmap, int Kr, int Kg, int Kb);
     }
 }

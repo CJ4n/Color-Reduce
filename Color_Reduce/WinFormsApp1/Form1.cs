@@ -4,24 +4,42 @@ namespace WinFormsApp1
     // 1. Czy orderedDIthering dla N=256 powinine byæ ciemniejszy?
 
     //TODO:
-    // 1. Add Error Diffusion Algorithm
-    // 2. Add Popularity Algorithm
-    // 3. Add option to loan new image
-    // 4. Maybe changed KTextBox to something more intuitive trackbar/psuedo combobox
-    // 5. Show images side by side, orignal and reduced
+    // 4. Changed KTextBox to DomainUpDown
 
     public partial class Form1 : Form
     {
-        private string imagePath = "..\\..\\..\\..\\resources\\lena_grayscale.bmp";
+        private string _imagePath = "..\\..\\..\\..\\resources\\lena_color32.png";
         private Bitmap _originalImage;
-        private Algorithm _alorithm;
+        private Algorithm _algorithm;
+        private float _imageScale = 1.5f;
         public Form1()
         {
             InitializeComponent();
+            _originalImage = GetBitampFromFile(_imagePath);
+            _algorithm = new None(_originalImage);
+            UpdateImageFromCurrentImagePath();
+        }
 
-            _originalImage = GetBitampFromFile(imagePath);
-            _alorithm = new None(_originalImage);
+        private void UpdateImageFromCurrentImagePath()
+        {
+            _originalImage = GetBitampFromFile(_imagePath);
+            UpdateControlsDimension();
+            _algorithm.UpdateBitmap(_originalImage);
             Repaint();
+        }
+
+        private void UpdateControlsDimension()
+        {
+            this.ClientSize = new Size(2 * GetScaledMeasurement(_originalImage.Width)
+                + this.splitContainer1.SplitterWidth + this.splitContainer2.SplitterWidth
+                + this.algorithmGroupBox.Width, GetScaledMeasurement(_originalImage.Height));
+            this.splitContainer2.SplitterDistance = splitContainer2.Width / 2;
+            this.splitContainer1.SplitterDistance = this.Width - this.algorithmGroupBox.Width;
+            this.originalImageCanvas.Image = GetDisplayableImage(_originalImage);
+        }
+        private int GetScaledMeasurement(int measurement)
+        {
+            return (int)(_imageScale * measurement);
         }
 
         private Bitmap GetBitampFromFile(string path)
@@ -40,16 +58,21 @@ namespace WinFormsApp1
             int Kg = int.Parse(this.KgTextBox.Text);
             int Kb = int.Parse(this.KbTextBox.Text);
 
-            Bitmap resultImage = _alorithm.ApplayColorReduce(Kr, Kg, Kb);
-            Canvas.Image = resultImage;
+            Bitmap resultImage = _algorithm.ApplayColorReduce(Kr, Kg, Kb);
+            Canvas.Image = GetDisplayableImage(resultImage);
             Canvas.Refresh();
+        }
+
+        private Bitmap GetDisplayableImage(Bitmap image)
+        {
+            return new Bitmap(image, new Size((int)(image.Width * _imageScale), (int)(image.Height * _imageScale)));
         }
 
         private void noneRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (this.noneRadioButton.Checked)
             {
-                _alorithm = new None(_originalImage);
+                _algorithm = new None(_originalImage);
                 Repaint();
             }
         }
@@ -58,7 +81,7 @@ namespace WinFormsApp1
         {
             if (this.avarageDitheringRadioButton.Checked)
             {
-                _alorithm = new AvarageDitheringAlgorithm(_originalImage);
+                _algorithm = new AvarageDitheringAlgorithm(_originalImage);
                 Repaint();
             }
         }
@@ -67,7 +90,7 @@ namespace WinFormsApp1
         {
             if (this.orderedDitheringDeterministicRadioButton.Checked)
             {
-                _alorithm = new OrderedDitheringDeterministicAlgorithm(_originalImage);
+                _algorithm = new OrderedDitheringDeterministicAlgorithm(_originalImage);
                 Repaint();
             }
         }
@@ -76,7 +99,7 @@ namespace WinFormsApp1
         {
             if (this.OrderedDitheringRandomRadioButton.Checked)
             {
-                _alorithm = new OrderedDitheringRandomAlgorithm(_originalImage);
+                _algorithm = new OrderedDitheringRandomAlgorithm(_originalImage);
                 Repaint();
             }
         }
@@ -86,6 +109,7 @@ namespace WinFormsApp1
             if (this.errorDiffusionDitheringRadioButton.Checked)
             {
 
+                _algorithm = new ErrorDiffusionDitheringAlgorithm(_originalImage);
                 Repaint();
             }
         }
@@ -94,7 +118,7 @@ namespace WinFormsApp1
         {
             if (this.popularityAlgorithmRadioButton.Checked)
             {
-
+                _algorithm = new PopulatiryAlgorithm(_originalImage);
                 Repaint();
             }
         }
@@ -121,6 +145,17 @@ namespace WinFormsApp1
         private void ValidatedKTextBox(object sender, EventArgs e)
         {
             Repaint();
+        }
+
+        private void loadImageButton_Click(object sender, EventArgs e)
+        {
+            var status = this.openFileDialog1.ShowDialog();
+            if (status != DialogResult.OK)
+            {
+                return;
+            }
+            _imagePath = this.openFileDialog1.FileName;
+            UpdateImageFromCurrentImagePath();
         }
     }
 }

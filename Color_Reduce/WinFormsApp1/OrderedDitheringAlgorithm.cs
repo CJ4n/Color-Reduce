@@ -80,36 +80,31 @@
             return 255 / (k - 1) * col;
         }
 
-        override public Bitmap ApplayColorReduce(int Kr, int Kg, int Kb)
+        protected override void ReduceColors(BmpPixelSnoop bitmap, int Kr, int Kg, int Kb)
         {
-            using (var bitmap = new BmpPixelSnoop(image))
+            int Nr = ComputeN(Kr);
+            int[,] Dr = matrixes[Nr];
+
+            int Ng = ComputeN(Kr);
+            int[,] Dg = matrixes[Ng];
+
+            int Nb = ComputeN(Kb);
+            int[,] Db = matrixes[Nb];
+
+            for (int row = 0; row < bitmap.Height; ++row)
             {
-                int Nr = ComputeN(Kr);
-                int[,] Dr = matrixes[Nr];
-
-                int Ng = ComputeN(Kr);
-                int[,] Dg = matrixes[Ng];
-
-                int Nb = ComputeN(Kb);
-                int[,] Db = matrixes[Nb];
-
-                for (int row = 0; row < bitmap.Height; ++row)
+                for (int col = 0; col < bitmap.Width; ++col)
                 {
-                    for (int col = 0; col < bitmap.Width; ++col)
-                    {
-                        Color Ii = bitmap.GetPixel(col, row);
+                    Color Ii = bitmap.GetPixel(col, row);
 
-                        int r = ComputePixel(Kr, Nr, Ii.R, col, row, Dr);
-                        int g = ComputePixel(Kg, Ng, Ii.G, col, row, Dg);
-                        int b = ComputePixel(Kb, Nb, Ii.B, col, row, Db);
+                    int r = ComputePixel(Kr, Nr, Ii.R, col, row, Dr);
+                    int g = ComputePixel(Kg, Ng, Ii.G, col, row, Dg);
+                    int b = ComputePixel(Kb, Nb, Ii.B, col, row, Db);
 
-                        Color newColor = Color.FromArgb(255, r, g, b);
-                        bitmap.SetPixel(col, row, newColor);
-                    }
+                    Color newColor = Color.FromArgb(255, r, g, b);
+                    bitmap.SetPixel(col, row, newColor);
                 }
             }
-            return image;
-
         }
     }
 }
