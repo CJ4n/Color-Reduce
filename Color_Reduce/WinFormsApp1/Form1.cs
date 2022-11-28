@@ -8,7 +8,7 @@ namespace WinFormsApp1
 
     public partial class Form1 : Form
     {
-        private string _imagePath = "..\\..\\..\\..\\resources\\lena_color32.png";
+        private string _imagePath = "..\\..\\..\\..\\resources\\lena_color.png";
         private Bitmap _originalImage;
         private Algorithm _algorithm;
         private float _imageScale = 1.5f;
