@@ -5,7 +5,7 @@ namespace WinFormsApp1
 
     //TODO:
     // 4. Changed KTextBox to DomainUpDown
-
+    // 5. Make alorithm not rerun if no params have changed
     public partial class Form1 : Form
     {
         private string _imagePath = "..\\..\\..\\..\\resources\\lena_color.png";
@@ -140,11 +140,12 @@ namespace WinFormsApp1
                 MessageBox.Show(execption.Message);
                 return;
             }
+            Repaint();
+
         }
 
         private void ValidatedKTextBox(object sender, EventArgs e)
         {
-            Repaint();
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
