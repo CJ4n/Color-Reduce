@@ -18,7 +18,7 @@
                     int r = Utils.GetNearestMultiple(color.R, basicMultipleR);
                     int g = Utils.GetNearestMultiple(color.G, basicMultipleG);
                     int b = Utils.GetNearestMultiple(color.B, basicMultipleB);
-                    Color newColor = Color.FromArgb(255, r, g, b);
+                    Color newColor = Color.FromArgb(255, r & 0xFF, g & 0xFF, b & 0xFF);
                     bitmap.SetPixel(col, row, newColor);
                 }
             }

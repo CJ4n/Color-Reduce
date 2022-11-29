@@ -27,7 +27,7 @@
                     var retG = CalculatePixelAndeError(channelG[col, row], basicMultipleG);
                     var retB = CalculatePixelAndeError(channelB[col, row], basicMultipleB);
 
-                    Color newColor = Color.FromArgb(255, retR.K, retG.K, retB.K);
+                    Color newColor = Color.FromArgb(255, retR.K & 0xFF, retG.K & 0xFF, retB.K & 0xFF);
                     bitmap.SetPixel(col, row, newColor);
 
                     DiffuseError(channelR, channelG, channelB, col, row, retR.error, retG.error, retB.error);

@@ -32,11 +32,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.originalImageCanvas = new System.Windows.Forms.PictureBox();
+            this.KTextBox = new System.Windows.Forms.TextBox();
             this.loadImageButton = new System.Windows.Forms.Button();
             this.KbTextBox = new System.Windows.Forms.TextBox();
             this.KgTextBox = new System.Windows.Forms.TextBox();
             this.KrTextBox = new System.Windows.Forms.TextBox();
-            this.RbLabel = new System.Windows.Forms.Label();
+            this.KbLabel = new System.Windows.Forms.Label();
             this.KgLabel = new System.Windows.Forms.Label();
             this.KrLabel = new System.Windows.Forms.Label();
             this.algorithmGroupBox = new System.Windows.Forms.GroupBox();
@@ -47,6 +48,7 @@
             this.orderedDitheringDeterministicRadioButton = new System.Windows.Forms.RadioButton();
             this.avarageDitheringRadioButton = new System.Windows.Forms.RadioButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,11 +83,13 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.KTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.loadImageButton);
             this.splitContainer1.Panel2.Controls.Add(this.KbTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.KgTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.KrTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.RbLabel);
+            this.splitContainer1.Panel2.Controls.Add(this.KbLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KgLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KrLabel);
             this.splitContainer1.Panel2.Controls.Add(this.algorithmGroupBox);
@@ -119,9 +123,18 @@
             this.originalImageCanvas.TabIndex = 0;
             this.originalImageCanvas.TabStop = false;
             // 
+            // KTextBox
+            // 
+            this.KTextBox.Location = new System.Drawing.Point(164, 299);
+            this.KTextBox.Name = "KTextBox";
+            this.KTextBox.Size = new System.Drawing.Size(125, 27);
+            this.KTextBox.TabIndex = 8;
+            this.KTextBox.Text = "32";
+            this.KTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKTextBox);
+            // 
             // loadImageButton
             // 
-            this.loadImageButton.Location = new System.Drawing.Point(21, 538);
+            this.loadImageButton.Location = new System.Drawing.Point(20, 234);
             this.loadImageButton.Name = "loadImageButton";
             this.loadImageButton.Size = new System.Drawing.Size(174, 29);
             this.loadImageButton.TabIndex = 7;
@@ -136,8 +149,7 @@
             this.KbTextBox.Size = new System.Drawing.Size(125, 27);
             this.KbTextBox.TabIndex = 6;
             this.KbTextBox.Text = "4";
-            this.KbTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKTextBox);
-            this.KbTextBox.Validated += new System.EventHandler(this.ValidatedKTextBox);
+            this.KbTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
             // 
             // KgTextBox
             // 
@@ -146,8 +158,7 @@
             this.KgTextBox.Size = new System.Drawing.Size(125, 27);
             this.KgTextBox.TabIndex = 5;
             this.KgTextBox.Text = "4";
-            this.KgTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKTextBox);
-            this.KgTextBox.Validated += new System.EventHandler(this.ValidatedKTextBox);
+            this.KgTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
             // 
             // KrTextBox
             // 
@@ -156,17 +167,16 @@
             this.KrTextBox.Size = new System.Drawing.Size(125, 27);
             this.KrTextBox.TabIndex = 4;
             this.KrTextBox.Text = "4";
-            this.KrTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKTextBox);
-            this.KrTextBox.Validated += new System.EventHandler(this.ValidatedKTextBox);
+            this.KrTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
             // 
-            // RbLabel
+            // KbLabel
             // 
-            this.RbLabel.AutoSize = true;
-            this.RbLabel.Location = new System.Drawing.Point(21, 382);
-            this.RbLabel.Name = "RbLabel";
-            this.RbLabel.Size = new System.Drawing.Size(30, 20);
-            this.RbLabel.TabIndex = 3;
-            this.RbLabel.Text = "Rb:";
+            this.KbLabel.AutoSize = true;
+            this.KbLabel.Location = new System.Drawing.Point(21, 382);
+            this.KbLabel.Name = "KbLabel";
+            this.KbLabel.Size = new System.Drawing.Size(30, 20);
+            this.KbLabel.TabIndex = 3;
+            this.KbLabel.Text = "Rb:";
             // 
             // KgLabel
             // 
@@ -273,6 +283,15 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(164, 488);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -312,12 +331,14 @@
         private TextBox KbTextBox;
         private TextBox KgTextBox;
         private TextBox KrTextBox;
-        private Label RbLabel;
+        private Label KbLabel;
         private Label KgLabel;
         private Label KrLabel;
         private SplitContainer splitContainer2;
         private PictureBox originalImageCanvas;
         private Button loadImageButton;
         private OpenFileDialog openFileDialog1;
+        private TextBox KTextBox;
+        private Button button1;
     }
 }

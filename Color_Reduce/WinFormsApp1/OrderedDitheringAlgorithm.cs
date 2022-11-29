@@ -64,8 +64,7 @@
             {
                 return matrixSizes[0];
             }
-            throw new Exception("n not found!!!");
-            return -1; // is should never occur
+            throw new Exception("n not found!!!");  // is should never occur
         }
 
         abstract protected (int, int) ComputeIndexes(int col, int row, int n);
@@ -100,8 +99,7 @@
                     int r = ComputePixel(Kr, Nr, Ii.R, col, row, Dr);
                     int g = ComputePixel(Kg, Ng, Ii.G, col, row, Dg);
                     int b = ComputePixel(Kb, Nb, Ii.B, col, row, Db);
-
-                    Color newColor = Color.FromArgb(255, r, g, b);
+                    Color newColor = Color.FromArgb(255,r & 0xFF, g & 0xFF, b & 0xFF);
                     bitmap.SetPixel(col, row, newColor);
                 }
             }
