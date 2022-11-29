@@ -71,7 +71,7 @@
 
         private int ComputePixel(int k, int n, int Ii, int x, int y, int[,] Dn)
         {
-            int col = Ii / n / n;
+            int col = (int)((float)Ii / (float)(n * n));
             int re = Ii % (n * n);
             (int i, int j) = ComputeIndexes(x, y, n);
             if (re > Dn[i, j])
@@ -99,7 +99,8 @@
                     int r = ComputePixel(Kr, Nr, Ii.R, col, row, Dr);
                     int g = ComputePixel(Kg, Ng, Ii.G, col, row, Dg);
                     int b = ComputePixel(Kb, Nb, Ii.B, col, row, Db);
-                    Color newColor = Color.FromArgb(255,r & 0xFF, g & 0xFF, b & 0xFF);
+
+                    Color newColor = Color.FromArgb(255, r & 0xFF, g & 0xFF, b & 0xFF);
                     bitmap.SetPixel(col, row, newColor);
                 }
             }

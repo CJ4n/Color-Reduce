@@ -41,7 +41,7 @@
 
             for (int row = 0; row < bitmap.Height; row++)
             {
-                for (int col = 0; col < bitmap.Height; col++)
+                for (int col = 0; col < bitmap.Width; col++)
                 {
                     bitmap.SetPixel(col, row, GetNearesColor(newColors, bitmap.GetPixel(col, row)));
                 }
