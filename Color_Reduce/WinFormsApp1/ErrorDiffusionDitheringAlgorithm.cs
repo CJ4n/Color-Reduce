@@ -35,7 +35,6 @@
             }
         }
 
-        // (new pixel value,error)
         private (int K, double error) CalculatePixelAndeError(double color, int basicMultiple)
         {
             int K = Utils.GetNearestMultiple((int)Math.Round(color), basicMultiple);
@@ -43,7 +42,6 @@
             return (K, error);
         }
 
-        // TODO: optimize applaying kernel: many zeros!!!
         private void DiffuseError(double[,] channelR, double[,] channelG, double[,] channelB, int col, int row, double errorR, double errorG, double errorB)
         {
             for (int i = -1; i <= 1; i++)

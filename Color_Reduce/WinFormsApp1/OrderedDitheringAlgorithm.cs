@@ -64,7 +64,7 @@
             {
                 return matrixSizes[0];
             }
-            throw new Exception("n not found!!!");  // is should never occur
+            throw new Exception("n not found!!!");  // it should never occur
         }
 
         abstract protected (int, int) ComputeIndexes(int col, int row, int n);

@@ -1,15 +1,9 @@
 namespace WinFormsApp1
 {
-    // PYTANIA:
-
-    //TODO:
-    // 4. Changed KTextBox to DomainUpDown
-    // 5. Make alorithm not rerun if no params have changed
-    // 6. popularity dosnt wokr for some reasson for strips
     public partial class Form1 : Form
     {
-        private string _imagePath = "..\\..\\..\\..\\resources\\grayscale10stepX.jpg";
-        private Bitmap _originalImage;   
+        private string _imagePath = "..\\..\\..\\..\\resources\\web_DenmanRossninestepvalue.jpg";
+        private Bitmap _originalImage;
         private Algorithm _algorithm;
         private float _imageScale = 1.5f;
         public Form1()
@@ -33,7 +27,7 @@ namespace WinFormsApp1
         {
             this.ClientSize = new Size(2 * GetScaledMeasurement(_originalImage.Width)
                 + this.splitContainer1.SplitterWidth + this.splitContainer2.SplitterWidth
-                + this.algorithmGroupBox.Width,Math.Max(550, GetScaledMeasurement(_originalImage.Height)));
+                + this.algorithmGroupBox.Width, Math.Max(550, GetScaledMeasurement(_originalImage.Height)));
             this.splitContainer2.SplitterDistance = splitContainer2.Width / 2;
             this.splitContainer1.SplitterDistance = this.Width - this.algorithmGroupBox.Width;
             this.originalImageCanvas.Image = GetDisplayableImage(_originalImage);
@@ -55,18 +49,18 @@ namespace WinFormsApp1
 
         private void Repaint()
         {
-            int Kr = int.Parse(this.KrTextBox.Text);
-            int Kg = int.Parse(this.KgTextBox.Text);
-            int Kb = int.Parse(this.KbTextBox.Text);
-            int K = int.Parse(this.KTextBox.Text);
-            if(_algorithm is PopulatiryAlgorithm)
+            int Kr = ((int)this.KrNumericUpDown.Value);
+            int Kg = ((int)this.KgNumericUpDown.Value);
+            int Kb = ((int)this.KbNumericUpDown.Value);
+            int K = ((int)this.KNumericUpDown.Value);
+            if (_algorithm is PopulatiryAlgorithm)
             {
                 Kr = K;
             }
             UpdateUI();
             Bitmap resultImage = _algorithm.ApplayColorReduce(Kr, Kg, Kb);
-            if(Canvas.Image!=null)
-            Canvas.Image?.Dispose();
+            if (Canvas.Image != null)
+                Canvas.Image?.Dispose();
             Canvas.Image = GetDisplayableImage(resultImage);
             Canvas.Refresh();
         }
@@ -79,11 +73,13 @@ namespace WinFormsApp1
                 this.KrLabel.Visible = false;
                 this.KbLabel.Visible = false;
 
-                this.KgTextBox.Visible = false;
-                this.KrTextBox.Visible = false;
-                this.KbTextBox.Visible = false;
+                this.KrNumericUpDown.Visible = false;
+                this.KgNumericUpDown.Visible = false;
+                this.KbNumericUpDown.Visible = false;
 
-                this.KTextBox.Visible = false;
+                this.KNumericUpDown.Visible = false;
+                this.KLabel.Visible = false;
+
 
             }
             else if (_algorithm is PopulatiryAlgorithm)
@@ -92,10 +88,12 @@ namespace WinFormsApp1
                 this.KrLabel.Visible = false;
                 this.KbLabel.Visible = false;
 
-                this.KgTextBox.Visible = false;
-                this.KrTextBox.Visible = false;
-                this.KbTextBox.Visible = false;
-                this.KTextBox.Visible = true;
+                this.KrNumericUpDown.Visible = false;
+                this.KgNumericUpDown.Visible = false;
+                this.KbNumericUpDown.Visible = false;
+
+                this.KNumericUpDown.Visible = true;
+                this.KLabel.Visible = true;
 
             }
             else
@@ -104,11 +102,12 @@ namespace WinFormsApp1
                 this.KrLabel.Visible = true;
                 this.KbLabel.Visible = true;
 
-                this.KgTextBox.Visible = true;
-                this.KrTextBox.Visible = true;
-                this.KbTextBox.Visible = true;
+                this.KrNumericUpDown.Visible = true;
+                this.KgNumericUpDown.Visible = true;
+                this.KbNumericUpDown.Visible = true;
 
-                this.KTextBox.Visible = false;
+                this.KNumericUpDown.Visible = false;
+                this.KLabel.Visible = false;
 
             }
         }
@@ -172,46 +171,6 @@ namespace WinFormsApp1
             }
         }
 
-        private void ValidatingKrgbTextBox(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            try
-            {
-                TextBox tb = (TextBox)sender;
-                int k = int.Parse(tb.Text);
-                if (k < 1 || k > 256)
-                {
-                    throw new Exception($"Value {k} in not in range <1,256>");
-                }
-            }
-            catch (Exception execption)
-            {
-                e.Cancel = true;
-                MessageBox.Show(execption.Message);
-                return;
-            }
-            Repaint();
-        }
-
-        private void ValidatingKTextBox(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            try
-            {
-                TextBox tb = (TextBox)sender;
-                int k = int.Parse(tb.Text);
-                if (k < 1 || k > 256*256*256)
-                {
-                    throw new Exception($"Value {k} in not in range <1,256^3>");
-                }
-            }
-            catch (Exception execption)
-            {
-                e.Cancel = true;
-                MessageBox.Show(execption.Message);
-                return;
-            }
-            Repaint();
-        }
-
         private void loadImageButton_Click(object sender, EventArgs e)
         {
             var status = this.openFileDialog1.ShowDialog();
@@ -221,6 +180,26 @@ namespace WinFormsApp1
             }
             _imagePath = this.openFileDialog1.FileName;
             UpdateImageFromCurrentImagePath();
+        }
+
+        private void KrNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void KgNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void KbNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Repaint();
+        }
+
+        private void KNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Repaint();
         }
     }
 }

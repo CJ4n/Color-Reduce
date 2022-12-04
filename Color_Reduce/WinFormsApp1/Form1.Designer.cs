@@ -32,11 +32,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.originalImageCanvas = new System.Windows.Forms.PictureBox();
-            this.KTextBox = new System.Windows.Forms.TextBox();
+            this.KLabel = new System.Windows.Forms.Label();
+            this.KNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.KgNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.KrNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.KbNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.loadImageButton = new System.Windows.Forms.Button();
-            this.KbTextBox = new System.Windows.Forms.TextBox();
-            this.KgTextBox = new System.Windows.Forms.TextBox();
-            this.KrTextBox = new System.Windows.Forms.TextBox();
             this.KbLabel = new System.Windows.Forms.Label();
             this.KgLabel = new System.Windows.Forms.Label();
             this.KrLabel = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.orderedDitheringDeterministicRadioButton = new System.Windows.Forms.RadioButton();
             this.avarageDitheringRadioButton = new System.Windows.Forms.RadioButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -59,6 +59,10 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KgNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KbNumericUpDown)).BeginInit();
             this.algorithmGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,12 +87,12 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.KTextBox);
+            this.splitContainer1.Panel2.Controls.Add(this.KLabel);
+            this.splitContainer1.Panel2.Controls.Add(this.KNumericUpDown);
+            this.splitContainer1.Panel2.Controls.Add(this.KgNumericUpDown);
+            this.splitContainer1.Panel2.Controls.Add(this.KrNumericUpDown);
+            this.splitContainer1.Panel2.Controls.Add(this.KbNumericUpDown);
             this.splitContainer1.Panel2.Controls.Add(this.loadImageButton);
-            this.splitContainer1.Panel2.Controls.Add(this.KbTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.KgTextBox);
-            this.splitContainer1.Panel2.Controls.Add(this.KrTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.KbLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KgLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KrLabel);
@@ -123,14 +127,106 @@
             this.originalImageCanvas.TabIndex = 0;
             this.originalImageCanvas.TabStop = false;
             // 
-            // KTextBox
+            // KLabel
             // 
-            this.KTextBox.Location = new System.Drawing.Point(164, 299);
-            this.KTextBox.Name = "KTextBox";
-            this.KTextBox.Size = new System.Drawing.Size(125, 27);
-            this.KTextBox.TabIndex = 8;
-            this.KTextBox.Text = "32";
-            this.KTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKTextBox);
+            this.KLabel.AutoSize = true;
+            this.KLabel.Location = new System.Drawing.Point(24, 276);
+            this.KLabel.Name = "KLabel";
+            this.KLabel.Size = new System.Drawing.Size(21, 20);
+            this.KLabel.TabIndex = 13;
+            this.KLabel.Text = "K:";
+            // 
+            // KNumericUpDown
+            // 
+            this.KNumericUpDown.Location = new System.Drawing.Point(24, 299);
+            this.KNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.KNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KNumericUpDown.Name = "KNumericUpDown";
+            this.KNumericUpDown.Size = new System.Drawing.Size(150, 27);
+            this.KNumericUpDown.TabIndex = 2;
+            this.KNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KNumericUpDown.ValueChanged += new System.EventHandler(this.KNumericUpDown_ValueChanged);
+            // 
+            // KgNumericUpDown
+            // 
+            this.KgNumericUpDown.Location = new System.Drawing.Point(24, 352);
+            this.KgNumericUpDown.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.KgNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KgNumericUpDown.Name = "KgNumericUpDown";
+            this.KgNumericUpDown.Size = new System.Drawing.Size(150, 27);
+            this.KgNumericUpDown.TabIndex = 12;
+            this.KgNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KgNumericUpDown.ValueChanged += new System.EventHandler(this.KgNumericUpDown_ValueChanged);
+            // 
+            // KrNumericUpDown
+            // 
+            this.KrNumericUpDown.Location = new System.Drawing.Point(24, 299);
+            this.KrNumericUpDown.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.KrNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KrNumericUpDown.Name = "KrNumericUpDown";
+            this.KrNumericUpDown.Size = new System.Drawing.Size(150, 27);
+            this.KrNumericUpDown.TabIndex = 11;
+            this.KrNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KrNumericUpDown.ValueChanged += new System.EventHandler(this.KrNumericUpDown_ValueChanged);
+            // 
+            // KbNumericUpDown
+            // 
+            this.KbNumericUpDown.Location = new System.Drawing.Point(24, 405);
+            this.KbNumericUpDown.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.KbNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KbNumericUpDown.Name = "KbNumericUpDown";
+            this.KbNumericUpDown.Size = new System.Drawing.Size(150, 27);
+            this.KbNumericUpDown.TabIndex = 10;
+            this.KbNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.KbNumericUpDown.ValueChanged += new System.EventHandler(this.KbNumericUpDown_ValueChanged);
             // 
             // loadImageButton
             // 
@@ -141,33 +237,6 @@
             this.loadImageButton.Text = "Load Image";
             this.loadImageButton.UseVisualStyleBackColor = true;
             this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
-            // 
-            // KbTextBox
-            // 
-            this.KbTextBox.Location = new System.Drawing.Point(21, 405);
-            this.KbTextBox.Name = "KbTextBox";
-            this.KbTextBox.Size = new System.Drawing.Size(125, 27);
-            this.KbTextBox.TabIndex = 6;
-            this.KbTextBox.Text = "4";
-            this.KbTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
-            // 
-            // KgTextBox
-            // 
-            this.KgTextBox.Location = new System.Drawing.Point(21, 352);
-            this.KgTextBox.Name = "KgTextBox";
-            this.KgTextBox.Size = new System.Drawing.Size(125, 27);
-            this.KgTextBox.TabIndex = 5;
-            this.KgTextBox.Text = "4";
-            this.KgTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
-            // 
-            // KrTextBox
-            // 
-            this.KrTextBox.Location = new System.Drawing.Point(21, 299);
-            this.KrTextBox.Name = "KrTextBox";
-            this.KrTextBox.Size = new System.Drawing.Size(125, 27);
-            this.KrTextBox.TabIndex = 4;
-            this.KrTextBox.Text = "4";
-            this.KrTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingKrgbTextBox);
             // 
             // KbLabel
             // 
@@ -283,15 +352,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(164, 488);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -311,6 +371,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KgNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KrNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KbNumericUpDown)).EndInit();
             this.algorithmGroupBox.ResumeLayout(false);
             this.algorithmGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -328,9 +392,6 @@
         private RadioButton orderedDitheringDeterministicRadioButton;
         private RadioButton avarageDitheringRadioButton;
         private RadioButton noneRadioButton;
-        private TextBox KbTextBox;
-        private TextBox KgTextBox;
-        private TextBox KrTextBox;
         private Label KbLabel;
         private Label KgLabel;
         private Label KrLabel;
@@ -338,7 +399,10 @@
         private PictureBox originalImageCanvas;
         private Button loadImageButton;
         private OpenFileDialog openFileDialog1;
-        private TextBox KTextBox;
-        private Button button1;
+        private NumericUpDown KbNumericUpDown;
+        private NumericUpDown KgNumericUpDown;
+        private NumericUpDown KrNumericUpDown;
+        private NumericUpDown KNumericUpDown;
+        private Label KLabel;
     }
 }
