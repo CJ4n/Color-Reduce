@@ -83,23 +83,33 @@ namespace WinFormsApp1
 
         public static Bitmap DrawStrips(double V,int numStrips)
         {
-            Bitmap bitmap = new Bitmap(numStrips * 30+2*30, 360+30);
+            int padding = 15;
+            Bitmap bitmap = new Bitmap((numStrips+numStrips+2) * padding, 360);
             Graphics g = Graphics.FromImage(bitmap);
             g.Clear(Color.White);
             g.Dispose();
-            int padding = 30;
             int quanta = 0;
-            for (int x = padding; x < bitmap.Width-padding; x++)
+            bool flag = true;
+            for (int x =0 ; x < bitmap.Width; x++)
             {
-                
-                double S = (double)quanta* 30.0/bitmap.Width;
-                for (int y = padding; y < bitmap.Height-padding; y++)
+                if (flag == false)
                 {
-                    float H = y;
-                    Color color = HsvToRgb(H, S, V);
-                    bitmap.SetPixel(x, y, color);
+                    double S = (double)quanta /(double)numStrips;
+                    for (int y = 0; y < bitmap.Height ; y++)
+                    {
+                        float H = y;
+                        Color color = HsvToRgb(H, S, V);
+                        bitmap.SetPixel(x, y, color);
+                    }
+                    if (x % padding == 0)
+                    {
+                        int asfsa = 4;
+                    }
+                    if (x % padding == 0) quanta++;
                 }
-                if (x % 30==0) quanta++;
+                
+                if (x % padding == 0) flag = !flag ;
+
             }
             return bitmap;
         }
