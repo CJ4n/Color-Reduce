@@ -137,7 +137,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 508);
+            this.label1.Location = new System.Drawing.Point(24, 492);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 20);
             this.label1.TabIndex = 16;
@@ -145,7 +145,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(20, 531);
+            this.trackBar1.Location = new System.Drawing.Point(21, 515);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(130, 56);
@@ -154,7 +154,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(45, 472);
+            this.button1.Location = new System.Drawing.Point(24, 460);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
             this.button1.TabIndex = 14;

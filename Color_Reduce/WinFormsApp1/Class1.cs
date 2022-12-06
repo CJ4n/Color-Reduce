@@ -81,21 +81,21 @@ namespace WinFormsApp1
 
         }
 
-        public static Bitmap DrawStrips(double V,int numStrips)
+        public static Bitmap DrawStrips(double V, int numStrips)
         {
             int padding = 15;
-            Bitmap bitmap = new Bitmap((numStrips+numStrips+2) * padding, 360);
+            Bitmap bitmap = new Bitmap((numStrips + numStrips + 2) * padding, 360);
             Graphics g = Graphics.FromImage(bitmap);
             g.Clear(Color.White);
             g.Dispose();
             int quanta = 0;
             bool flag = true;
-            for (int x =0 ; x < bitmap.Width; x++)
+            for (int x = 0; x < bitmap.Width; x++)
             {
                 if (flag == false)
                 {
-                    double S = (double)quanta /(double)numStrips;
-                    for (int y = 0; y < bitmap.Height ; y++)
+                    double S = (double)quanta / (double)numStrips;
+                    for (int y = 0; y < bitmap.Height; y++)
                     {
                         float H = y;
                         Color color = HsvToRgb(H, S, V);
@@ -107,11 +107,11 @@ namespace WinFormsApp1
                     }
                     if (x % padding == 0) quanta++;
                 }
-                
-                if (x % padding == 0) flag = !flag ;
+
+                if (x % padding == 0) flag = !flag;
 
             }
             return bitmap;
         }
     }
-    }
+}
