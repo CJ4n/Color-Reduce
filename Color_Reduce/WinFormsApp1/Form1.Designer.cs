@@ -32,6 +32,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.originalImageCanvas = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             this.KLabel = new System.Windows.Forms.Label();
             this.KNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.KgNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -59,6 +62,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KgNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KrNumericUpDown)).BeginInit();
@@ -87,6 +91,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.trackBar1);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.KLabel);
             this.splitContainer1.Panel2.Controls.Add(this.KNumericUpDown);
             this.splitContainer1.Panel2.Controls.Add(this.KgNumericUpDown);
@@ -126,6 +133,34 @@
             this.originalImageCanvas.Size = new System.Drawing.Size(333, 753);
             this.originalImageCanvas.TabIndex = 0;
             this.originalImageCanvas.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 508);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 20);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "V:";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(20, 531);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(130, 56);
+            this.trackBar1.TabIndex = 15;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(45, 472);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Generate image";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // KLabel
             // 
@@ -371,6 +406,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.originalImageCanvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KgNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KrNumericUpDown)).EndInit();
@@ -404,5 +440,8 @@
         private NumericUpDown KrNumericUpDown;
         private NumericUpDown KNumericUpDown;
         private Label KLabel;
+        private Button button1;
+        private TrackBar trackBar1;
+        private Label label1;
     }
 }

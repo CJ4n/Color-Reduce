@@ -23,6 +23,15 @@ namespace WinFormsApp1
             Repaint();
         }
 
+        private void UpdateImageFromGenertedBitmap()
+        {
+            _originalImage?.Dispose();
+            _originalImage = Class1.DrawStrips(this.trackBar1.Value/100.0,16);
+            UpdateControlsDimension();
+            _algorithm.UpdateBitmap(_originalImage);
+            Repaint();
+        }
+
         private void UpdateControlsDimension()
         {
             this.ClientSize = new Size(2 * GetScaledMeasurement(_originalImage.Width)
@@ -200,6 +209,16 @@ namespace WinFormsApp1
         private void KNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             Repaint();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateImageFromGenertedBitmap();
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateImageFromGenertedBitmap();
         }
     }
 }
